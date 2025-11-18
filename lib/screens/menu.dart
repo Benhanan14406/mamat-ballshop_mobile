@@ -14,6 +14,7 @@ class MyHomePage extends StatelessWidget {
     ItemHomepage("All Products", Icons.sports_football, Color.fromRGBO(0, 0, 250, 1.0)),
     ItemHomepage("My Products", Icons.sports_football_outlined, Color.fromRGBO(0, 200, 0, 1.0)),
     ItemHomepage("Create Product", Icons.add, Color.fromRGBO(220, 0, 0, 1.0)),
+    ItemHomepage("Logout", Icons.logout, Color.fromRGBO(100, 100, 100, 1.0)),
   ];
 
   @override

@@ -13,7 +13,7 @@ class ProductEntry {
   String category;
   bool isFeatured;
   String id;
-  int lingkar;
+  int size;
   int stock;
   int review;
   int reviewCount;
@@ -28,7 +28,7 @@ class ProductEntry {
     required this.category,
     required this.isFeatured,
     required this.id,
-    required this.lingkar,
+    required this.size,
     required this.stock,
     required this.review,
     required this.reviewCount,
@@ -44,7 +44,7 @@ class ProductEntry {
     category: json["category"],
     isFeatured: json["is_featured"],
     id: json["id"],
-    lingkar: json["lingkar"],
+    size: json["size"],
     stock: json["stock"],
     review: json["review"],
     reviewCount: json["reviewCount"],
@@ -60,7 +60,7 @@ class ProductEntry {
     "category": category,
     "is_featured": isFeatured,
     "id": id,
-    "lingkar": lingkar,
+    "size": size,
     "stock": stock,
     "review": review,
     "reviewCount": reviewCount,
