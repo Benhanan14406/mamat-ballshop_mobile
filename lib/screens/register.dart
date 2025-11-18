@@ -123,22 +123,52 @@ class _RegisterPageState extends State<RegisterPage> {
                             "password1": password1,
                             "password2": password2,
                           }));
-                      if (context.mounted) {
-                        if (response['status'] == 'success') {
+
+                      if (password1 != password2) {
+                        if (context.mounted) {
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
-                              content: Text('Successfully registered!'),
+                              content: Text('Passwords do not match!'),
                             ),
                           );
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const LoginPage()),
-                          );
-                        } else {
+                        }
+                        return;
+                      }
+
+                      try {
+                        final response = await request.postJson(
+                            "http://localhost:8000/auth/register/",
+                            jsonEncode({
+                              "username": username,
+                              "password1": password1,
+                              "password2": password2,
+                            }));
+
+                        if (context.mounted) {
+                          if (response['status'] == 'success') {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text('Successfully registered!'),
+                              ),
+                            );
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const LoginPage()),
+                            );
+                          } else {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(response['message'] ?? 'Failed to register!'),
+                              ),
+                            );
+                          }
+                        }
+                      } catch (e) {
+                        if (context.mounted) {
                           ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                              content: Text('Failed to register!'),
+                            SnackBar(
+                              content: Text('Error: $e'),
                             ),
                           );
                         }

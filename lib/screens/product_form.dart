@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../widgets/product_card/left_drawer.dart';
+import 'dart:convert';
+import 'package:provider/provider.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:mamatballshop_mobile/screens/menu.dart';
+import '../widgets/left_drawer.dart';
 
 class ProductFormPage extends StatefulWidget {
   const ProductFormPage({super.key});
@@ -29,6 +33,7 @@ class _ProductFormPage extends State<ProductFormPage> {
 
   @override
   Widget build(BuildContext context) {
+    final request = context.watch<CookieRequest>();
     return Scaffold(
       appBar: AppBar(
         title: const Center(
@@ -296,19 +301,40 @@ class _ProductFormPage extends State<ProductFormPage> {
                                 actions: [
                                   TextButton(
                                     child: const Text('OK'),
-                                    onPressed: () {
-                                      Navigator.pop(context);
-                                      _formKey.currentState!.reset();
-                                      setState(() {
-                                        _name = "";
-                                        _category = null;
-                                        _description = "";
-                                        _thumbnail = "";
-                                        _price = 0;
-                                        _size = 0;
-                                        _stock = 0;
-                                        _isFeatured = false;
-                                      });
+                                    onPressed: () async {
+                                      if (_formKey.currentState!.validate()) {
+                                        final response = await request.postJson(
+                                          "http://localhost:8000/create-flutter/",
+                                          jsonEncode({
+                                            "name": _name,
+                                            "description": _description,
+                                            "price": _price,
+                                            "stock": _stock,
+                                            "size": _size,
+                                            "thumbnail": _thumbnail,
+                                            "category": _category,
+                                            "is_featured": _isFeatured,
+                                          }),
+                                        );
+                                        if (context.mounted) {
+                                          if (response['status'] == 'success') {
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(const SnackBar(
+                                              content: Text("Product successfully saved!"),
+                                            ));
+                                            Navigator.pushReplacement(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) => MyHomePage()),
+                                            );
+                                          } else {
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(const SnackBar(
+                                              content: Text("Something went wrong, please try again."),
+                                            ));
+                                          }
+                                        }
+                                      }
                                     },
                                   ),
                                 ],

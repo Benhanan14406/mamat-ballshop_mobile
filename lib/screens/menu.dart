@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:mamatballshop_mobile/widgets/product_card/product_card.dart';
+import 'package:mamatballshop_mobile/widgets/product_card.dart';
 
-import '../widgets/product_card/left_drawer.dart';
+import '../widgets/left_drawer.dart';
 
 class MyHomePage extends StatelessWidget {
   MyHomePage({super.key});
