@@ -14,7 +14,7 @@ class MyHomePage extends StatelessWidget {
     ItemHomepage("All Products", Icons.sports_football, Color.fromRGBO(0, 0, 250, 1.0)),
     ItemHomepage("My Products", Icons.sports_football_outlined, Color.fromRGBO(0, 200, 0, 1.0)),
     ItemHomepage("Create Product", Icons.add, Color.fromRGBO(220, 0, 0, 1.0)),
-    ItemHomepage("Logout", Icons.logout, Color.fromRGBO(100, 100, 100, 1.0)),
+    ItemHomepage("Logout", Icons.logout, Color.fromRGBO(173, 77, 77, 1.0)),
   ];
 
   @override
@@ -98,14 +98,23 @@ class InfoCard extends StatelessWidget {
       child: Container(
         width: MediaQuery.of(context).size.width / 3.5,
         padding: const EdgeInsets.all(16.0),
+        color: Color.fromRGBO(173, 77, 77, 1.0),
         child: Column(
           children: [
             Text(
               title,
-              style: const TextStyle(fontWeight: FontWeight.bold),
+              style: const TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
             ),
             const SizedBox(height: 8.0),
-            Text(content),
+            Text(
+              content,
+              style: const TextStyle(
+                color: Colors.white,
+              ),
+            ),
           ],
         ),
       ),

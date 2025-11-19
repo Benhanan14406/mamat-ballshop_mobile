@@ -19,6 +19,7 @@ class ProductEntryCard extends StatelessWidget {
       child: InkWell(
         onTap: onTap,
         child: Card(
+          color: Color.fromRGBO(173, 77, 77, 1.0),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8.0),
             side: BorderSide(color: Colors.grey.shade300),
@@ -51,14 +52,21 @@ class ProductEntryCard extends StatelessWidget {
                 Text(
                   product.name,
                   style: const TextStyle(
-                    fontSize: 18.0,
+                    fontSize: 24.0,
                     fontWeight: FontWeight.bold,
+                    color: Colors.white,
                   ),
                 ),
                 const SizedBox(height: 6),
 
                 // Category
-                Text('Category: ${product.category}'),
+                Text(
+                  'Category: ${product.category}',
+                  style: const TextStyle(
+                    fontSize: 18.0,
+                    color: Colors.white,
+                  ),
+                ),
                 const SizedBox(height: 6),
 
                 // Content preview
@@ -68,7 +76,22 @@ class ProductEntryCard extends StatelessWidget {
                       : product.description,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(color: Colors.black54),
+                  style: const TextStyle(
+                    fontSize: 18.0,
+                    color: Colors.white,
+                  ),
+                ),
+                const SizedBox(height: 6),
+
+                // Content preview
+                Text(
+                  product.price.toString(),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(
+                    fontSize: 20.0,
+                    color: Colors.white,
+                  ),
                 ),
                 const SizedBox(height: 6),
 
@@ -76,9 +99,9 @@ class ProductEntryCard extends StatelessWidget {
                 if (product.isFeatured)
                   const Text(
                     'Featured',
-                    style: TextStyle(
-                        color: Colors.amber,
-                        fontWeight: FontWeight.bold
+                    style: const TextStyle(
+                      fontSize: 18.0,
+                      color: Colors.white,
                     ),
                   ),
               ],

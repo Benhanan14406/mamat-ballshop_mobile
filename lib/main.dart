@@ -36,8 +36,8 @@ class MyApp extends StatelessWidget {
           //
           // This works for code too, not just values: Most code changes can be
           // tested with just a hot reload.
-          colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.blue)
-              .copyWith(secondary: Colors.blueAccent[400]),
+          colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.blueGrey)
+              .copyWith(secondary: Color.fromRGBO(173, 77, 77, 1.0)),
         ),
           home: const LoginPage()
       ),

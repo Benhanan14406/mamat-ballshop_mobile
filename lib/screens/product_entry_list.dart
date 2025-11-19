@@ -36,7 +36,14 @@ class _ProductEntryListPageState extends State<ProductEntryListPage> {
     final request = context.watch<CookieRequest>();
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Product Entry List'),
+        title: const Text(
+          'Product Entry List',
+          style: const TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        backgroundColor: Theme.of(context).colorScheme.primary,
       ),
       drawer: const LeftDrawer(),
       body: FutureBuilder(
@@ -50,7 +57,10 @@ class _ProductEntryListPageState extends State<ProductEntryListPage> {
                 children: [
                   Text(
                     'There are no products yet.',
-                    style: TextStyle(fontSize: 20, color: Color(0xff59A5D8)),
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.black
+                    ),
                   ),
                   SizedBox(height: 8),
                 ],
